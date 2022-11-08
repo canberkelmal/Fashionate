@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public float DeltaFlow;
     public GameObject Walkers;
     public GameObject Collectables;
+    public GameObject PassedWalkers;
     public Canvas cnv;
     Text ScoreText;
     Text TempScoreText;
@@ -20,6 +21,7 @@ public class GameManager : MonoBehaviour
     GameObject CurrenWalker;
     Vector3 WalkerStartPoint=new Vector3(18, 2, -21);
     Vector3 WalkerEndPoint=new Vector3(15, 2, -14);
+    Vector3 PassedPoint=new Vector3(13, 2, -6);
     Vector3 PendingWalkerPos;
     Vector3 PendingWalker2Pos;
     bool WalkStarted=false;
@@ -55,7 +57,7 @@ public class GameManager : MonoBehaviour
         }
 
         //WalkerArrived function is triggered when CurrentWalker is ALMOST arrive to the WalkerEndPoint
-        if(CurrenWalker.transform.localPosition.z+0.2 >= WalkerEndPoint.z){
+        if(CurrenWalker.transform.localPosition.z == WalkerEndPoint.z){
             WalkerArrived();
         }
 
@@ -73,6 +75,12 @@ public class GameManager : MonoBehaviour
         //Flowing collectables on the band
         Collectables.transform.position=Vector3.MoveTowards(Collectables.transform.position, Collectables.transform.position + new Vector3(5,0,0), WalkerSpeed);
 
+        if(PassedWalkers.transform.childCount>0){
+            for(int i=0; i<PassedWalkers.transform.childCount; i++){
+                PassedWalkers.transform.GetChild(i).transform.position = Vector3.MoveTowards(PassedWalkers.transform.GetChild(i).transform.position, PassedPoint - new Vector3(i*2, 0, 0), WalkerSpeed);
+            }
+        }
+
     }
 
     //Set the pending walkers's positions
@@ -88,9 +96,23 @@ public class GameManager : MonoBehaviour
         //Creates 2nd pending walker
         Instantiate(CurrenWalker, PendingWalker2Pos, CurrenWalker.transform.rotation, Walkers.transform);
 
-        //Set CurrentWalker to next walker
-        CurrenWalker=Walkers.transform.GetChild(1).gameObject;
+
+        //Set the walker as passed and set the next walker as CurrentWalker
+        if(tempScore>=3){
+            CurrenWalker.transform.SetParent(PassedWalkers.transform);
+            CurrenWalker = Walkers.transform.GetChild(0).gameObject;
+        }
+
+        //Destroy the walker and set the next walker as CurrentWalker
+        else if(tempScore<3){
+            CurrenWalker = Walkers.transform.GetChild(1).gameObject;
+            Destroy(Walkers.transform.GetChild(0).gameObject);
+        }
+        
+        
         WalkStarted=false;
+
+        
 
         //Import walker score to the general score and set tempScore to 0
         score=score+tempScore;
@@ -101,7 +123,6 @@ public class GameManager : MonoBehaviour
         TempScoreText.text=tempScore.ToString();
 
         //Destroy the arrived walker
-        Destroy(Walkers.transform.GetChild(0).gameObject);
         Debug.Log("Walker has arrived!");
     }
 
