@@ -64,6 +64,9 @@ public class GameManager : MonoBehaviour
             Replay();
         }
 
+        //Flowing collectables on the band
+        Collectables.transform.position=Vector3.MoveTowards(Collectables.transform.position, Collectables.transform.position + new Vector3(5,0,0), WalkerSpeed);
+
     }
 
     //Set the pending walkers's positions
@@ -91,16 +94,26 @@ public class GameManager : MonoBehaviour
     IEnumerator ItemFlower(){
         Debug.Log("Created");
 
-        Instantiate(PlusCollectable, new Vector3(8,2,-18), PlusCollectable.transform.rotation, Collectables.transform);
-        Instantiate(PlusCollectable, new Vector3(8,2,-17), PlusCollectable.transform.rotation, Collectables.transform);
-        Instantiate(PlusCollectable, new Vector3(8,2,-16), PlusCollectable.transform.rotation, Collectables.transform);
+        Instantiate(RandomItemCreator(), new Vector3(8,1,-18), PlusCollectable.transform.rotation, Collectables.transform);
+        Instantiate(RandomItemCreator(), new Vector3(8,1,-17), PlusCollectable.transform.rotation, Collectables.transform);
+        Instantiate(RandomItemCreator(), new Vector3(8,1,-16), PlusCollectable.transform.rotation, Collectables.transform);
 
         yield return new WaitForSeconds(DeltaFlow);
         StartCoroutine(ItemFlower());
     }
 
-    void RandomItemCreator(){
-        flowDice=Mathf.RoundToInt(UnityEngine.Random.Range(-18f,-16f));
+    GameObject RandomItemCreator(){
+        flowDice=UnityEngine.Random.Range(0f, 2f);
+        if(flowDice<=1){
+            return MinusCollectable;
+        }
+        else if(flowDice>1 && flowDice<=2){
+            return PlusCollectable;
+        }
+        else{
+            return null;
+        }
+
     }
     
 
