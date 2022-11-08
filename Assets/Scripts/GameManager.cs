@@ -111,7 +111,7 @@ public class GameManager : MonoBehaviour
     }
 
     IEnumerator ItemFlower(){
-        Debug.Log("Created");
+        //Debug.Log("Created");
 
         Instantiate(RandomItemCreator(), new Vector3(8,1,-18.5f), PlusCollectable.transform.rotation, Collectables.transform);
         Instantiate(RandomItemCreator(), new Vector3(8,1,-17), PlusCollectable.transform.rotation, Collectables.transform);
