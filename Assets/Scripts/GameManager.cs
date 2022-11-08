@@ -6,20 +6,32 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public GameObject Walkers;
     public float WalkerSpeed;
+    public GameObject Walkers;
+    public GameObject Collectables;
+    GameObject PlusCollectable;
+    GameObject MinusCollectable;
     GameObject CurrenWalker;
     Vector3 WalkerStartPoint=new Vector3(18, 2, -21);
     Vector3 WalkerEndPoint=new Vector3(15, 2, -14);
     Vector3 PendingWalkerPos;
     Vector3 PendingWalker2Pos;
     bool WalkStarted=false;
+    int score=0;
+    int tempScore=0;
     
     void Start()
     {
         CurrenWalker=Walkers.transform.GetChild(0).gameObject;
+
         PendingWalkerPos = new Vector3(WalkerStartPoint.x+2, 2, WalkerStartPoint.z);
         PendingWalker2Pos=new Vector3(PendingWalkerPos.x+2, 2, WalkerStartPoint.z);
+
+        PlusCollectable=Collectables.transform.GetChild(0).gameObject;
+        MinusCollectable=Collectables.transform.GetChild(1).gameObject;
+
+        score=0;
+        tempScore=0;
     }
     
     void FixedUpdate()
