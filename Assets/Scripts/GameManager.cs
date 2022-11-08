@@ -2,11 +2,13 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public float WalkerSpeed;
+    public float DeltaFlow;
     public GameObject Walkers;
     public GameObject Collectables;
     GameObject PlusCollectable;
@@ -19,6 +21,9 @@ public class GameManager : MonoBehaviour
     bool WalkStarted=false;
     int score=0;
     int tempScore=0;
+    float flowDice=0f;
+
+
     
     void Start()
     {
@@ -32,6 +37,7 @@ public class GameManager : MonoBehaviour
 
         score=0;
         tempScore=0;
+        StartCoroutine(ItemFlower());        
     }
     
     void FixedUpdate()
@@ -81,6 +87,22 @@ public class GameManager : MonoBehaviour
         Destroy(Walkers.transform.GetChild(0).gameObject);
         Debug.Log("Walker has arrived!");
     }
+
+    IEnumerator ItemFlower(){
+        Debug.Log("Created");
+
+        Instantiate(PlusCollectable, new Vector3(8,2,-18), PlusCollectable.transform.rotation, Collectables.transform);
+        Instantiate(PlusCollectable, new Vector3(8,2,-17), PlusCollectable.transform.rotation, Collectables.transform);
+        Instantiate(PlusCollectable, new Vector3(8,2,-16), PlusCollectable.transform.rotation, Collectables.transform);
+
+        yield return new WaitForSeconds(DeltaFlow);
+        StartCoroutine(ItemFlower());
+    }
+
+    void RandomItemCreator(){
+        flowDice=Mathf.RoundToInt(UnityEngine.Random.Range(-18f,-16f));
+    }
+    
 
     //Reload the current scene
     public void Replay(){

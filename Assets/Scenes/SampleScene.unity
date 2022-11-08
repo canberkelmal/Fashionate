@@ -469,7 +469,7 @@ PrefabInstance:
     - target: {fileID: 1446091234667583960, guid: e156e8db648d942439ed2b10f3a83713,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 1446091234667583960, guid: e156e8db648d942439ed2b10f3a83713,
         type: 3}
@@ -847,8 +847,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WalkerSpeed: 0.1
+  DeltaFlow: 1
   Walkers: {fileID: 523380680}
-  Collectables: {fileID: 0}
+  Collectables: {fileID: 1753433942}
 --- !u!4 &1776034216
 Transform:
   m_ObjectHideFlags: 0
@@ -954,7 +955,7 @@ PrefabInstance:
     - target: {fileID: 1446091234667583960, guid: c7c856d9928e081458c575e0b92aa1aa,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 10
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1446091234667583960, guid: c7c856d9928e081458c575e0b92aa1aa,
         type: 3}
