@@ -26,8 +26,6 @@ public class GameManager : MonoBehaviour
     int score=0;
     int tempScore=0;
     float flowDice=0f;
-
-
     
     void Start()
     {
@@ -45,14 +43,11 @@ public class GameManager : MonoBehaviour
 
         score=0;
         tempScore=0;
-        StartCoroutine(ItemFlower());        
+        StartCoroutine(CreateAndPlaceCollectable());        
     }
     
     void FixedUpdate()
-    {
-
-        //Physics.CheckSphere()
-        
+    {        
         //Set CurrentWalker position to the WalkerEndPoint via LeftClick or Touch
         if(Input.GetMouseButton(0)){
             Debug.Log("clicked");
@@ -87,7 +82,7 @@ public class GameManager : MonoBehaviour
         Walkers.transform.GetChild(2).transform.position=Vector3.MoveTowards(Walkers.transform.GetChild(2).transform.position, PendingWalkerPos, WalkerSpeed);;
     }
 
-
+    //Creates new pending walker, changes current walker, imports temp score to score and sets score texts
     void WalkerArrived(){
 
         //Creates 2nd pending walker
@@ -110,36 +105,42 @@ public class GameManager : MonoBehaviour
         Debug.Log("Walker has arrived!");
     }
 
-    IEnumerator ItemFlower(){
-        //Debug.Log("Created");
+    //Creates random collectables in a row
+    IEnumerator CreateAndPlaceCollectable(){
 
         Instantiate(RandomItemCreator(), new Vector3(8,1,-18.5f), PlusCollectable.transform.rotation, Collectables.transform);
         Instantiate(RandomItemCreator(), new Vector3(8,1,-17), PlusCollectable.transform.rotation, Collectables.transform);
         Instantiate(RandomItemCreator(), new Vector3(8,1,-15.5f), PlusCollectable.transform.rotation, Collectables.transform);
 
         yield return new WaitForSeconds(DeltaFlow);
-        StartCoroutine(ItemFlower());
+        StartCoroutine(CreateAndPlaceCollectable());
     }
 
+    //Returns random collectable
     GameObject RandomItemCreator(){
         flowDice=UnityEngine.Random.Range(0f, 3f);
+
         if(flowDice<=1){
             return MinusCollectable;
         }
+
         else if(flowDice>1 && flowDice<=2){
             return PlusCollectable;
         }
+
         else{
             return EmptyCollectable;
         }
 
     }
     
+    //Increases Temp Score
     public void IncTempScore(){
         tempScore++;
         TempScoreText.text=tempScore.ToString();
     }
 
+    //Decreases Temp Score
     public void DecTempScore(){
         tempScore--;
         TempScoreText.text=tempScore.ToString();

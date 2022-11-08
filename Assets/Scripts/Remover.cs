@@ -2,11 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Cleaner : MonoBehaviour
+public class Remover : MonoBehaviour
 {
-    void Start(){
-
-    }
     
     void OnTriggerEnter(Collider other){
         Debug.Log("Removed");
