@@ -469,7 +469,7 @@ GameObject:
   m_Component:
   - component: {fileID: 523380681}
   m_Layer: 0
-  m_Name: Girls
+  m_Name: Walkers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -503,7 +503,7 @@ PrefabInstance:
     - target: {fileID: 1563752367017702280, guid: 4002d5d95a8fd6f4981d17f05a9fe37e,
         type: 3}
       propertyPath: m_Name
-      value: Girl (2)
+      value: Walker (2)
       objectReference: {fileID: 0}
     - target: {fileID: 8661295931684047332, guid: 4002d5d95a8fd6f4981d17f05a9fe37e,
         type: 3}
@@ -513,7 +513,7 @@ PrefabInstance:
     - target: {fileID: 8661295931684047332, guid: 4002d5d95a8fd6f4981d17f05a9fe37e,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 15
+      value: 22
       objectReference: {fileID: 0}
     - target: {fileID: 8661295931684047332, guid: 4002d5d95a8fd6f4981d17f05a9fe37e,
         type: 3}
@@ -523,7 +523,7 @@ PrefabInstance:
     - target: {fileID: 8661295931684047332, guid: 4002d5d95a8fd6f4981d17f05a9fe37e,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -14
+      value: -21
       objectReference: {fileID: 0}
     - target: {fileID: 8661295931684047332, guid: 4002d5d95a8fd6f4981d17f05a9fe37e,
         type: 3}
@@ -743,6 +743,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e0b0a97afb531f4aba0f0c24d7a5a5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Walkers: {fileID: 0}
   CurrenWalker: {fileID: 413679934}
   WalkerSpeed: 0.2
 --- !u!4 &1776034216
@@ -770,7 +771,7 @@ PrefabInstance:
     - target: {fileID: 1563752367017702280, guid: 4002d5d95a8fd6f4981d17f05a9fe37e,
         type: 3}
       propertyPath: m_Name
-      value: Girl (1)
+      value: Walker (1)
       objectReference: {fileID: 0}
     - target: {fileID: 8661295931684047332, guid: 4002d5d95a8fd6f4981d17f05a9fe37e,
         type: 3}
@@ -845,7 +846,7 @@ PrefabInstance:
     - target: {fileID: 1563752367017702280, guid: 4002d5d95a8fd6f4981d17f05a9fe37e,
         type: 3}
       propertyPath: m_Name
-      value: Girl
+      value: Walker
       objectReference: {fileID: 0}
     - target: {fileID: 8661295931684047332, guid: 4002d5d95a8fd6f4981d17f05a9fe37e,
         type: 3}
