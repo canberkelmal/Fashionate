@@ -12,14 +12,17 @@ public class Walker : MonoBehaviour
         //If the collectable's tag "Minus", decrease temp score
         if(other.gameObject.tag=="Minus"){
             gm.DecTempScore();
+
+            //Destroy collected object
+            Destroy(other.gameObject);
         }
         
         //If the collectable's tag "Plus", increase temp score
         else if(other.gameObject.tag=="Plus"){
             gm.IncTempScore();
-        }
 
-        //Destroy collected object
-        Destroy(other.gameObject);
+            //Destroy collected object
+            Destroy(other.gameObject);
+        }
     }
 }
